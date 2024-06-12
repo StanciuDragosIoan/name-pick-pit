@@ -51,17 +51,22 @@
 
     <script>
       const values = ["Laur", "Oana", "Irina", "Dragos"];
-      function getRandomValue(arr) {
-        console.log(arr.length);
-        if (arr.length !== 4) {
-          throw new Error("Array must contain exactly 4 elements");
-        }
-        const randomIndex = Math.floor(Math.random() * arr.length);
-        return arr[randomIndex];
+
+      function getRandomValue(arr, previousValue) {
+        let randomValue;
+        do {
+          const randomIndex = Math.floor(Math.random() * arr.length);
+          randomValue = arr[randomIndex];
+        } while (randomValue === previousValue);
+        return randomValue;
       }
 
       function pickRandomValue() {
-        const randomValue = getRandomValue(values);
+        const previousValue = localStorage.getItem("previousValue");
+        const randomValue = getRandomValue(values, previousValue);
+
+        localStorage.setItem("previousValue", randomValue);
+
         document.getElementById(
           "result"
         ).textContent = `Random Value: ${randomValue}`;
