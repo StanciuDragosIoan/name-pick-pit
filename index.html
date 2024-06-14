@@ -40,6 +40,21 @@
       button:hover {
         background-color: #0056b3;
       }
+
+      .winner {
+        font-size:2rem;
+      }
+
+      /* confet */
+      label {
+        color: white;
+        font-size: 1.5rem;
+      }
+      input {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -52,7 +67,7 @@
     </div>
 
     <script>
-      const values = ["Laur 😁", "Oana 😆", "Irina 🙂", "Dragos 😀"];
+      const values = ["Laur 🥳", "Oana 😹", "Irina 🤩", "Dragos 😎"];
 
       function getRandomValue(arr, previousValue) {
         let randomValue;
@@ -71,7 +86,7 @@
 
         document.getElementById(
           "result"
-        ).textContent = `And the winner is: ${randomValue}!`;
+        ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue}<span>!`;
       }
 
       document

@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #282c34;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.emoji-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.reel {
+    width: 50px;
+    height: 150px;
+    overflow: hidden;
+    margin: 0 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #fff;
+    position: relative;
+}
+
+.emoji {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    position: absolute;
+    transition: transform 0.3s ease-in-out;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@keyframes spin {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-300%); }
+}
