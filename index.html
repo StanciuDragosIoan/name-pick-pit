@@ -1,98 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Value Picker</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f0f0f0;
-      }
-      .container {
-        text-align: center;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        width: 30rem;
-        height: 15rem;
-      }
-      .result {
-        font-size: 24px;
-        margin: 20px 0;
-        color: #333;
-      }
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #0056b3;
-      }
 
-      .winner {
-        font-size:2rem;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Value Picker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
 
-      /* confet */
-      label {
-        color: white;
-        font-size: 1.5rem;
-      }
-      input {
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Random Value Picker</h1>
-      <div class="result" id="result">
-        Click the button to pick a random value
-      </div>
-      <button id="inputBtn">Pick Random Value</button>
+    .container {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      width: 30rem;
+      height: 30rem;
+    }
+
+    .result {
+      font-size: 24px;
+      margin: 20px 0;
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .winner {
+      font-size: 2rem;
+    }
+
+    /* confet */
+    label {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    input {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .pokemon {
+      display: block;
+      margin: auto;
+      padding: 1rem;
+      width: 4rem;
+    }
+
+    .boo {
+      height: 10rem;
+    }
+
+    #inputBtn {
+      z-index: 2
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <img class="boo" src="./giphy.webp" />
+    <h1>Random Value Picker</h1>
+    <button id="inputBtn" onclick="pickRandomValue()">Pick your winner!</button>
+    <div class="result" id="result">
+      Click the button to pick a winner
     </div>
 
-    <script>
-      const values = ["Laur 🥳", "Oana 😹", "Irina 🤩", "Dragos 😎"];
+  </div>
 
-      function getRandomValue(arr, previousValue) {
-        let randomValue;
-        do {
-          const randomIndex = Math.floor(Math.random() * arr.length);
-          randomValue = arr[randomIndex];
-        } while (randomValue === previousValue);
-        return randomValue;
-      }
+  <script>
+    const values = [
+      { name: "Laur", src: "charmander_shiny.gif" },
+      { name: "Oana", src: "growlithe.gif" },
+      { name: "Irina", src: "fennekin.gif" },
+      { name: "Dragos", src: "abra_pokemon.gif" }
+    ];
 
-      function pickRandomValue() {
-        const previousValue = localStorage.getItem("previousValue");
-        const randomValue = getRandomValue(values, previousValue);
+    function getRandomValue(arr, previousValue) {
+      let randomValue;
+      do {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        randomValue = arr[randomIndex];
+      } while (randomValue.name === previousValue.name);
+      return randomValue;
+    }
 
-        localStorage.setItem("previousValue", randomValue);
+    function pickRandomValue() {
 
-        document.getElementById(
-          "result"
-        ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue}<span>!`;
-      }
+      const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
+      const randomValue = getRandomValue(values, previousValue);
 
-      document
-        .querySelector("#inputBtn")
-        .addEventListener("click", pickRandomValue);
-    </script>
-  </body>
+
+
+      localStorage.setItem("previousValue", JSON.stringify(randomValue));
+
+
+
+      document.getElementById(
+        "result"
+      ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
+                          <br/>
+                          <img class="pokemon" src="./${randomValue.src}"/>`;
+    }
+
+
+  </script>
 </body>
+</body>
+
 </html>
