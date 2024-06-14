@@ -20,6 +20,8 @@
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         background-color: #fff;
+        width: 30rem;
+        height: 15rem;
       }
       .result {
         font-size: 24px;
@@ -50,7 +52,7 @@
     </div>
 
     <script>
-      const values = ["Laur", "Oana", "Irina", "Dragos"];
+      const values = ["Laur 😁", "Oana 😆", "Irina 🙂", "Dragos 😀"];
 
       function getRandomValue(arr, previousValue) {
         let randomValue;
@@ -69,7 +71,7 @@
 
         document.getElementById(
           "result"
-        ).textContent = `Random Value: ${randomValue}`;
+        ).textContent = `And the winner is: ${randomValue}!`;
       }
 
       document
@@ -77,4 +79,5 @@
         .addEventListener("click", pickRandomValue);
     </script>
   </body>
+</body>
 </html>
