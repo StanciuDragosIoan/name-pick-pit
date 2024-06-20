@@ -74,7 +74,7 @@
     }
 
     #inputBtn {
-      z-index: 2
+      z-index: 2;
     }
   </style>
 </head>
@@ -84,7 +84,7 @@
   <div class="container">
     <img class="boo" src="./giphy.webp" />
     <h1>Random Value Picker</h1>
-    <button id="inputBtn" onclick="pickRandomValue()">Pick your winner!</button>
+    <button id="inputBtn">Pick your winner!</button>
     <div class="result" id="result">
       Click the button to pick a winner
     </div>
@@ -108,25 +108,43 @@
       return randomValue;
     }
 
-    function pickRandomValue() {
+    // function pickRandomValue() {
 
-      const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
-      const randomValue = getRandomValue(values, previousValue);
-
-
-
-      localStorage.setItem("previousValue", JSON.stringify(randomValue));
+    //   const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
+    //   const randomValue = getRandomValue(values, previousValue);
 
 
 
-      document.getElementById(
-        "result"
-      ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
-                          <br/>
-                          <img class="pokemon" src="./${randomValue.src}"/>`;
-    }
+    //   localStorage.setItem("previousValue", JSON.stringify(randomValue));
 
 
+
+    //   document.getElementById(
+    //     "result"
+    //   ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
+    //                       <br/>
+    //                       <img class="pokemon" src="./${randomValue.src}"/>`;
+    // }
+
+    document
+      .querySelector("#inputBtn")
+      .addEventListener("click", function () {
+
+        const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
+        const randomValue = getRandomValue(values, previousValue);
+
+
+
+        localStorage.setItem("previousValue", JSON.stringify(randomValue));
+
+
+
+        document.getElementById(
+          "result"
+        ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
+                    <br/>
+                    <img class="pokemon" src="./${randomValue.src}"/>`;
+      });
   </script>
 </body>
 </body>
