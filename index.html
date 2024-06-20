@@ -130,6 +130,8 @@
       .querySelector("#inputBtn")
       .addEventListener("click", function () {
 
+        alert("test")
+
         const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
         const randomValue = getRandomValue(values, previousValue);
 
