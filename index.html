@@ -86,16 +86,61 @@
     <h1>Random Value Picker</h1>
     <button id="inputBtn">Pick your winner!</button>
 
-
+    <div class="result">Click the button to pick a winner</div>
     <div id="result"></div>
   </div>
 
   <script>
     const btn = document.querySelector("#inputBtn");
 
+    const values = [
+      { name: "Laur", src: "charmander_shiny.gif" },
+      { name: "Oana", src: "growlithe.gif" },
+      { name: "Irina", src: "fennekin.gif" },
+      { name: "Dragos", src: "abra_pokemon.gif" }
+    ];
+
+    function getRandomValue(arr) {
+      let randomValue;
+      const randomIndex = Math.floor(Math.random() * arr.length);
+      randomValue = arr[randomIndex];
+      return randomValue;
+    }
+
+
+
+    function getUniqueValue(randomValue) {
+      const indexToExclude = values.indexOf(randomValue);
+
+      const newArr = values.filter(i => i.name !== randomValue.name)
+      const randomIndex = Math.floor(Math.random() * newArr.length);
+      const output = newArr[randomIndex];
+      return output;
+
+
+    }
+
     function pickName() {
-      const value = "TEST";
-      document.querySelector("#result").innerHTML = value;
+
+
+      const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
+      let randomValue = getRandomValue(values);
+      if (randomValue.name !== previousValue.name) {
+        localStorage.setItem("previousValue", JSON.stringify(randomValue));
+      } else {
+        const newValue = getUniqueValue(randomValue);
+        localStorage.setItem("previousValue", JSON.stringify(newValue));
+        randomValue = { ...newValue }
+      }
+
+
+
+      document.getElementById(
+        "result"
+      ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
+                    <br/>
+                    <img class="pokemon" src="./${randomValue.src}"/>`;
+
     }
 
     btn.addEventListener("click", pickName)
