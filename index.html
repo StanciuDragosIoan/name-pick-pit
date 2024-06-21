@@ -125,13 +125,13 @@
 
       const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
       let randomValue = getRandomValue(values);
-      if (randomValue.name !== previousValue.name) {
-        localStorage.setItem("previousValue", JSON.stringify(randomValue));
-      } else {
-        const newValue = getUniqueValue(randomValue);
-        localStorage.setItem("previousValue", JSON.stringify(newValue));
-        randomValue = { ...newValue }
-      }
+      // if (randomValue.name !== previousValue.name) {
+      //   localStorage.setItem("previousValue", JSON.stringify(randomValue));
+      // } else {
+      //   const newValue = getUniqueValue(randomValue);
+      //   localStorage.setItem("previousValue", JSON.stringify(newValue));
+      //   randomValue = { ...newValue }
+      // }
 
 
 
