@@ -91,56 +91,7 @@
   </div>
 
   <script>
-    // const btn = document.querySelector("#inputBtn");
 
-    // const values = [
-    //   { name: "Laur", src: "charmander_shiny.gif" },
-    //   { name: "Oana", src: "growlithe.gif" },
-    //   { name: "Irina", src: "fennekin.gif" },
-    //   { name: "Dragos", src: "abra_pokemon.gif" }
-    // ];
-
-    // function getRandomValue(arr) {
-    //   let randomValue;
-    //   const randomIndex = Math.floor(Math.random() * arr.length);
-    //   randomValue = arr[randomIndex];
-    //   return randomValue;
-    // }
-
-
-
-    // function getUniqueValue(randomValue) {
-    //   const indexToExclude = values.indexOf(randomValue);
-    //   const newArr = values.splice(indexToExclude, 1);
-    //   const randomIndex = Math.floor(Math.random() * newArr.length);
-    //   const output = newArr[randomIndex];
-    //   return output;
-    // }
-
-    // function pickName() {
-
-
-    //   const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
-    //   let randomValue = getRandomValue(values);
-
-
-
-
-    //   if (randomValue.name === previousValue.name) {
-    //     const newVal = getUniqueValue(randomValue);
-    //     console.log("DUPLICATE", randomValue, newVal);
-    //     return;
-    //   }
-
-    //   document.getElementById(
-    //     "result"
-    //   ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
-    //                 <br/>
-    //                 <img class="pokemon" src="./${randomValue.src}"/>`;
-
-    // }
-
-    // btn.addEventListener("click", pickName)
 
     const values = [
       { name: "Laur", src: "charmander_shiny.gif" },
@@ -159,16 +110,9 @@
     }
 
     document.querySelector("#inputBtn").addEventListener("click", function () {
-      console.log('Button clicked');
-
       const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
-      console.log('Previous Value:', previousValue);
-
       const randomValue = getRandomValue(values, previousValue);
-      console.log('Random Value:', randomValue);
-
       localStorage.setItem("previousValue", JSON.stringify(randomValue));
-
       document.getElementById("result").innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}!</span>
                 <br/>
                 <img class="pokemon" src="${randomValue.src}"/>`;
