@@ -85,49 +85,20 @@
     <img class="boo" src="./giphy.webp" />
     <h1>Random Value Picker</h1>
     <button id="inputBtn">Pick your winner!</button>
-    <div class="result">
-      Click the button to pick a winner
-    </div>
+
 
     <div id="result"></div>
   </div>
 
   <script>
-    const values = [
-      { name: "Laur", src: "charmander_shiny.gif" },
-      { name: "Oana", src: "growlithe.gif" },
-      { name: "Irina", src: "fennekin.gif" },
-      { name: "Dragos", src: "abra_pokemon.gif" }
-    ];
+    const btn = document.querySelector("#inputBtn");
 
-    function getRandomValue(arr, previousValue) {
-      let randomValue;
-      do {
-        const randomIndex = Math.floor(Math.random() * arr.length);
-        randomValue = arr[randomIndex];
-      } while (randomValue.name === previousValue.name);
-      return randomValue;
+    function pickName() {
+      const value = "TEST";
+      document.querySelector("#result").innerHTML = value;
     }
 
-    document
-      .querySelector("#inputBtn")
-      .addEventListener("click", function () {
-
-        const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
-        const randomValue = getRandomValue(values, previousValue);
-
-
-
-        localStorage.setItem("previousValue", JSON.stringify(randomValue));
-
-
-
-        document.getElementById(
-          "result"
-        ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
-                    <br/>
-                    <img class="pokemon" src="./${randomValue.src}"/>`;
-      });
+    btn.addEventListener("click", pickName)
   </script>
 </body>
 </body>
