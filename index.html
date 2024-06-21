@@ -154,31 +154,25 @@
       do {
         const randomIndex = Math.floor(Math.random() * arr.length);
         randomValue = arr[randomIndex];
-      } while (randomValue.name === previousValue.name);
+      } while (randomValue.name === previousValue?.name);
       return randomValue;
     }
 
+    document.querySelector("#inputBtn").addEventListener("click", function () {
+      console.log('Button clicked');
 
+      const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
+      console.log('Previous Value:', previousValue);
 
-    document
-      .querySelector("#inputBtn")
-      .addEventListener("click", function () {
+      const randomValue = getRandomValue(values, previousValue);
+      console.log('Random Value:', randomValue);
 
-        const previousValue = localStorage.getItem("previousValue") ? JSON.parse(localStorage.getItem("previousValue")) : null;
-        const randomValue = getRandomValue(values, previousValue);
+      localStorage.setItem("previousValue", JSON.stringify(randomValue));
 
-
-
-        localStorage.setItem("previousValue", JSON.stringify(randomValue));
-
-
-
-        document.getElementById(
-          "result"
-        ).innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}<span>!
-                    <br/>
-                    <img class="pokemon" src="./${randomValue.src}"/>`;
-      });
+      document.getElementById("result").innerHTML = `And the winner is:</br> <span class="winner">${randomValue.name}!</span>
+                <br/>
+                <img class="pokemon" src="${randomValue.src}"/>`;
+    });
   </script>
 </body>
 </body>
